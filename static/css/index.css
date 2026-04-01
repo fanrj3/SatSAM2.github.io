@@ -782,26 +782,6 @@ a:focus {
   font-style: italic;
 }
 
-/* ===================================================
-   COMING SOON BUTTONS
-   =================================================== */
-.btn-coming-soon {
-  opacity: 0.55 !important;
-  cursor: not-allowed !important;
-}
-
-.btn-coming-soon:hover {
-  transform: none !important;
-  box-shadow: var(--shadow-md) !important;
-  background: var(--text-primary) !important;
-}
-
-.btn-coming-soon small {
-  font-size: 0.7em;
-  font-weight: 400;
-  margin-left: 2px;
-  opacity: 0.9;
-}
 
 /* ===================================================
    FRAMEWORK FIGURE
