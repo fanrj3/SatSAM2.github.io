@@ -82,6 +82,18 @@ body {
     margin: 8px 4px;
 }
 
+.btn-coming-soon {
+  margin: 8px 4px;
+  opacity: 0.5;
+  cursor: default !important;
+  pointer-events: none;
+  border-radius: var(--border-radius) !important;
+  font-weight: 600 !important;
+  background: #6b7280 !important;
+  color: white !important;
+  border: none !important;
+}
+
 .dnerf {
   font-variant: small-caps;
 }
@@ -114,7 +126,7 @@ body {
 
 /* ── Teaser Video ── */
 .teaser-video-frame {
-  max-width: 600px;
+  max-width: 440px;
   margin: 0 auto 1.5rem;
 }
 
@@ -357,6 +369,18 @@ body {
   display: block;
   border-radius: calc(var(--border-radius) - 2px);
   width: 100%;
+  height: auto;
+}
+
+/* Fixed media heights to prevent dots/buttons from jumping between slides */
+#image-carousel .item img {
+  height: 340px;
+  object-fit: contain;
+  background: var(--background-secondary);
+}
+
+#video-carousel .item video {
+  aspect-ratio: 16 / 9;
   height: auto;
 }
 
@@ -1092,47 +1116,80 @@ a:focus {
   padding-left: 0.25rem;
 }
 
+/* ── Three-line (booktabs) table ── */
 .results-table-wrapper {
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  overflow: visible;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
 }
 
 .results-table {
+  border-collapse: collapse !important;
+  border: none !important;
   font-size: 0.9rem !important;
   margin: 0 !important;
 }
 
+/* Top rule */
 .results-table thead tr {
-  background: var(--background-accent);
+  background: transparent !important;
+  border-top: 2px solid var(--text-primary) !important;
 }
 
+/* Header cells + mid rule */
 .results-table thead th {
-  font-weight: 700;
-  color: var(--text-primary);
-  font-size: 0.85rem;
-  border-bottom: 2px solid var(--border-color) !important;
+  background: transparent !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  font-size: 0.85rem !important;
+  border: none !important;
+  border-bottom: 1px solid var(--text-secondary) !important;
+  padding: 0.55rem 0.75rem !important;
   white-space: nowrap;
 }
 
-.results-table td, .results-table th {
+/* Body cells — no borders */
+.results-table td {
+  border: none !important;
+  padding: 0.5rem 0.75rem !important;
   vertical-align: middle !important;
   text-align: center;
+}
+
+.results-table th {
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+/* Bottom rule on last row */
+.results-table tbody tr:last-child td {
+  border-bottom: 2px solid var(--text-primary) !important;
 }
 
 .results-table td:first-child,
 .results-table th:first-child {
   text-align: left;
-  padding-left: 1rem;
+  padding-left: 0.75rem !important;
+}
+
+/* Remove Bulma striping */
+.results-table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: transparent !important;
+}
+
+/* Subtle hover */
+.results-table.is-hoverable tbody tr:not(.is-selected):not(.ours-row):hover {
+  background-color: #f5f8ff !important;
 }
 
 .ours-row {
-  background: #eff6ff !important;
+  background: #eef4ff !important;
 }
 
 .ours-row td {
   color: var(--primary-color) !important;
+  font-weight: 600 !important;
 }
 
 .tag-type {
