@@ -3,447 +3,605 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors - Ruijie Fan et al.">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="Existing satellite video tracking methods often struggle with generalization, requiring scenario-specific training to achieve satisfactory performance, and are prone to track loss in the presence of occlusion. To address these challenges, we propose SatSAM2, a zero-shot satellite video tracker built on SAM2, designed to adapt foundation models to the remote sensing domain. SatSAM2 introduces two core modules: a Kalman Filter-based Constrained Motion Module (KFCMM) to exploit temporal motion cues and suppress drift, and a Motion-Constrained State Machine (MCSM) to regulate tracking states based on motion dynamics and reliability. To support large-scale evaluation, we propose MatrixCity Video Object Tracking (MVOT), a synthetic benchmark containing 1,500+ sequences and 157K annotated frames with diverse viewpoints, illumination, and occlusion conditions. Extensive experiments on two satellite tracking benchmarks and MVOT show that SatSAM2 outperforms both traditional and foundation model-based trackers, including SAM2 and its variants. Notably, on the OOTB dataset, SatSAM2 achieves a 5.84% AUC improvement over state-of-the-art methods. Our code and dataset will be publicly released to encourage further research.">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="Satellite Video Tracking, SAM2, Kalman Filter-based Motion Modeling">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="Ruijie Fan, Junyan Ye, Huan Chen, Zilong Huang, Xiaolei Wang and Weijia Li">
+  <meta name="title" content="SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors">
+  <meta name="description" content="SatSAM2 is a zero-shot satellite video tracker built on SAM2 with Kalman Filter-based Constrained Motion Module (KFCMM) and Motion-Constrained State Machine (MCSM), achieving 5.84% AUC improvement over state-of-the-art on the OOTB dataset.">
+  <meta name="keywords" content="Satellite Video Tracking, SAM2, Kalman Filter, Zero-Shot Tracking, Remote Sensing, CVPR 2026, Foundation Model, Video Object Segmentation">
+  <meta name="author" content="Ruijie Fan, Junyan Ye, Huan Chen, Zilong Huang, Xiaolei Wang, Weijia Li">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="Sun Yat-Sen University, Shanghai AI Laboratory">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors - Ruijie Fan et al.">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="Existing satellite video tracking methods often struggle with generalization, requiring scenario-specific training to achieve satisfactory performance, and are prone to track loss in the presence of occlusion. To address these challenges, we propose SatSAM2, a zero-shot satellite video tracker built on SAM2, designed to adapt foundation models to the remote sensing domain. SatSAM2 introduces two core modules: a Kalman Filter-based Constrained Motion Module (KFCMM) to exploit temporal motion cues and suppress drift, and a Motion-Constrained State Machine (MCSM) to regulate tracking states based on motion dynamics and reliability. To support large-scale evaluation, we propose MatrixCity Video Object Tracking (MVOT), a synthetic benchmark containing 1,500+ sequences and 157K annotated frames with diverse viewpoints, illumination, and occlusion conditions. Extensive experiments on two satellite tracking benchmarks and MVOT show that SatSAM2 outperforms both traditional and foundation model-based trackers, including SAM2 and its variants. Notably, on the OOTB dataset, SatSAM2 achieves a 5.84% AUC improvement over state-of-the-art methods. Our code and dataset will be publicly released to encourage further research.">
-  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:site_name" content="Sun Yat-Sen University &amp; Shanghai AI Laboratory">
+  <meta property="og:title" content="SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors">
+  <meta property="og:description" content="SatSAM2 is a zero-shot satellite video tracker built on SAM2 with Kalman Filter-based Constrained Motion Module (KFCMM) and Motion-Constrained State Machine (MCSM), achieving 5.84% AUC improvement over state-of-the-art on the OOTB dataset.">
   <meta property="og:url" content="https://fanrj3.github.io/SatSAM2.github.io/">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://github.com/fanrj3/SatSAM2.github.io/tree/master/static/images/social_preview.png">
+  <meta property="og:image" content="https://fanrj3.github.io/SatSAM2.github.io/static/images/Framework_01.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="og:image:alt" content="SatSAM2 Framework Overview">
+  <meta property="article:published_time" content="2026-06-01T00:00:00.000Z">
+  <meta property="article:author" content="Ruijie Fan">
   <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <meta property="article:tag" content="Satellite Video Tracking">
+  <meta property="article:tag" content="SAM2">
+  <meta property="article:tag" content="Kalman Filter">
+  <meta property="article:tag" content="Zero-Shot Tracking">
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
+  <!-- Academic / Google Scholar -->
+  <meta name="citation_title" content="SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors">
+  <meta name="citation_author" content="Fan, Ruijie">
+  <meta name="citation_author" content="Ye, Junyan">
+  <meta name="citation_author" content="Chen, Huan">
+  <meta name="citation_author" content="Huang, Zilong">
+  <meta name="citation_author" content="Wang, Xiaolei">
+  <meta name="citation_author" content="Li, Weijia">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)">
+  <meta name="citation_pdf_url" content="https://fanrj3.github.io/SatSAM2.github.io/static/pdfs/paper.pdf">
+
   <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="theme-color" content="#1e40af">
+  <meta name="msapplication-TileColor" content="#1e40af">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
+
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
+  <title>SatSAM2: Satellite Video Object Tracking with SAM2 and Kalman Priors | CVPR 2026</title>
 
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
+
+  <!-- Critical CSS -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
+
+  <!-- Non-critical CSS -->
   <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
   <noscript>
     <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
     <link rel="stylesheet" href="static/css/bulma-slider.min.css">
     <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   </noscript>
-  
-  <!-- Fonts - Optimized loading -->
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
+
+  <!-- Deferred Scripts -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script defer src="static/js/bulma-carousel.min.js"></script>
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "headline": "SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors",
+    "description": "SatSAM2 is a zero-shot satellite video tracker built on SAM2. It introduces a Kalman Filter-based Constrained Motion Module (KFCMM) and a Motion-Constrained State Machine (MCSM) to adapt foundation models to the remote sensing domain, achieving state-of-the-art performance without task-specific training.",
     "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
+      {"@type": "Person", "name": "Ruijie Fan", "affiliation": {"@type": "Organization", "name": "Sun Yat-Sen University"}},
+      {"@type": "Person", "name": "Junyan Ye", "affiliation": {"@type": "Organization", "name": "Sun Yat-Sen University"}},
+      {"@type": "Person", "name": "Huan Chen", "affiliation": {"@type": "Organization", "name": "Sun Yat-Sen University"}},
+      {"@type": "Person", "name": "Zilong Huang", "affiliation": {"@type": "Organization", "name": "Sun Yat-Sen University"}},
+      {"@type": "Person", "name": "Xiaolei Wang", "affiliation": {"@type": "Organization", "name": "Sun Yat-Sen University"}},
+      {"@type": "Person", "name": "Weijia Li", "affiliation": {"@type": "Organization", "name": "Sun Yat-Sen University"}}
     ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
+    "datePublished": "2026-06-01",
+    "publisher": {"@type": "Organization", "name": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"},
+    "url": "https://fanrj3.github.io/SatSAM2.github.io/",
+    "keywords": ["Satellite Video Tracking", "SAM2", "Kalman Filter", "Zero-Shot Tracking", "Remote Sensing", "CVPR 2026"],
+    "isAccessibleForFree": true
   }
   </script>
 </head>
 <body>
 
-
-  <!-- Scroll to Top Button -->
+  <!-- Scroll to Top -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <main id="main-content">
+
+  <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors</h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                Ruijie Fan<sup>1, *</sup>,</span>
-              <span class="author-block">
-                Junyan Ye<sup>1, 2</sup>,</span>
-              <span class="author-block">
-                Huan Chen<sup>1</sup>,</span>
-              <span class="author-block">
-                Zilong Huang<sup>1</sup>,</span>
-              <span class="author-block">
-                Xiaolei Wang<sup>1</sup>,</span>
-              <span class="author-block">
-                Weijia Li<sup>1, †</sup></span>
+
+            <!-- Venue Badge -->
+            <div class="venue-badge-container">
+              <span class="venue-badge">
+                <i class="fas fa-award"></i>
+                CVPR 2026
+              </span>
             </div>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Sun Yat-Sen University, Zhuhai, China</span>
-              <span class="author-block"><sup>2</sup>Shanghai AI Laboratory, Shanghai, China</span>
-            </div>
+            <h1 class="title is-1 publication-title">
+              SatSAM2: Motion-Constrained Video Object Tracking in Satellite Imagery using Promptable SAM2 and Kalman Priors
+            </h1>
 
             <div class="is-size-5 publication-authors">
-              <span class="eql-cntrb"><small><br><sup>*</sup>First author, <sup>†</sup>Corresponding author</small></span>
+              <span class="author-block">Ruijie Fan<sup>1,&thinsp;*</sup>,</span>
+              <span class="author-block">Junyan Ye<sup>1,&thinsp;2</sup>,</span>
+              <span class="author-block">Huan Chen<sup>1</sup>,</span>
+              <span class="author-block">Zilong Huang<sup>1</sup>,</span>
+              <span class="author-block">Xiaolei Wang<sup>1</sup>,</span>
+              <span class="author-block">Weijia Li<sup>1,&thinsp;&#8224;</sup></span>
             </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+            <div class="is-size-6 publication-affiliations">
+              <span class="affil-block"><sup>1</sup>Sun Yat-Sen University, Zhuhai, China</span>
+              <span class="affil-sep">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+              <span class="affil-block"><sup>2</sup>Shanghai AI Laboratory, Shanghai, China</span>
+            </div>
 
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
+            <div class="is-size-7 publication-notes">
+              <sup>*</sup>First author&ensp;
+              <sup>&#8224;</sup>Corresponding author
+            </div>
 
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="static/pdfs/paper.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
 
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
+              <span class="link-block">
+                <a href="static/pdfs/paper.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Supplementary</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark btn-coming-soon"
+                   title="Code will be released upon acceptance" onclick="return false;">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code <small>(Coming Soon)</small></span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark btn-coming-soon"
+                   title="arXiv preprint coming soon" onclick="return false;">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv <small>(Coming Soon)</small></span>
                 </a>
               </span>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <!-- ===================== END HERO ===================== -->
 
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Existing satellite video tracking methods often struggle with generalization, requiring scenario-specific training to achieve satisfactory performance, and are prone to track loss in the presence of occlusion. To address these challenges, we propose SatSAM2, a zero-shot satellite video tracker built on SAM2, designed to adapt foundation models to the remote sensing domain. SatSAM2 introduces two core modules: a Kalman Filter-based Constrained Motion Module (KFCMM) to exploit temporal motion cues and suppress drift, and a Motion-Constrained State Machine (MCSM) to regulate tracking states based on motion dynamics and reliability. To support large-scale evaluation, we propose MatrixCity Video Object Tracking (MVOT), a synthetic benchmark containing 1,500+ sequences and 157K annotated frames with diverse viewpoints, illumination, and occlusion conditions. Extensive experiments on two satellite tracking benchmarks and MVOT show that SatSAM2 outperforms both traditional and foundation model-based trackers, including SAM2 and its variants. Notably, on the OOTB dataset, SatSAM2 achieves a 5.84% AUC improvement over state-of-the-art methods. Our code and dataset will be publicly released to encourage further research.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/Framework_01.png" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
+  <!-- ===================== TEASER VIDEO ===================== -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser-video" autoplay controls muted loop height="100%" preload="metadata">
+          <source src="static/videos/banner_video.mp4" type="video/mp4">
+        </video>
         <h2 class="subtitle has-text-centered">
-          Fig 1. Overview of the proposed SatSAM2 framework.
-(a) SAM2 Observer encodes each frame and retrieves candidate masks via memory matching. 
-(b) Kalman Filter-based Constrained Motion Model (KFCMM) estimates target dynamics and provides predictive guidance under occlusion.
-(c) Motion-Constrained State Machine (MCSM) adaptively switches between tracking modes based on segmentation confidence and motion 
+          SatSAM2 enables robust, zero-shot tracking of small targets in satellite video by combining the
+          segmentation power of SAM2 with satellite-domain-specific Kalman motion constraints,
+          maintaining accurate tracks through occlusion, scale variation, and scene complexity.
         </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/QualitativeFig_01.png" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/kalman_analyze_01.png" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/ablation_study.png" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/car_5_good.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/car_30_good.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/car_10_ok.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
       </div>
     </div>
   </section>
-<!--End paper poster -->
+  <!-- ===================== END TEASER VIDEO ===================== -->
 
 
+  <!-- ===================== ABSTRACT ===================== -->
+  <section class="section hero is-light" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Existing satellite video tracking methods often struggle with generalization, requiring
+              scenario-specific training to achieve satisfactory performance, and are prone to track loss
+              in the presence of occlusion. To address these challenges, we propose <strong>SatSAM2</strong>,
+              a zero-shot satellite video tracker built on SAM2, designed to adapt foundation models to
+              the remote sensing domain. SatSAM2 introduces two core modules: a
+              <strong>Kalman Filter-based Constrained Motion Module (KFCMM)</strong> to exploit temporal
+              motion cues and suppress drift, and a <strong>Motion-Constrained State Machine (MCSM)</strong>
+              to regulate tracking states based on motion dynamics and reliability. To support large-scale
+              evaluation, we propose <strong>MatrixCity Video Object Tracking (MVOT)</strong>, a synthetic
+              benchmark containing 1,500+ sequences and 157K annotated frames with diverse viewpoints,
+              illumination, and occlusion conditions. Extensive experiments on two satellite tracking
+              benchmarks and MVOT show that SatSAM2 outperforms both traditional and foundation
+              model-based trackers, including SAM2 and its variants. Notably, on the OOTB dataset,
+              SatSAM2 achieves a <strong>5.84% AUC improvement</strong> over state-of-the-art methods.
+              Our code and dataset will be publicly released to encourage further research.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END ABSTRACT ===================== -->
 
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
+
+  <!-- ===================== METHOD ===================== -->
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+
+      <figure class="framework-figure">
+        <img src="static/images/Framework_01.png"
+             alt="Overview of the SatSAM2 framework"
+             loading="lazy">
+        <figcaption>
+          <strong>Fig. 1. Overview of the SatSAM2 framework.</strong>
+          (a) The <em>SAM2 Observer</em> encodes each frame and retrieves candidate masks via memory matching.
+          (b) The <em>Kalman Filter-based Constrained Motion Module (KFCMM)</em> estimates target dynamics
+          and provides predictive prompt guidance under occlusion.
+          (c) The <em>Motion-Constrained State Machine (MCSM)</em> adaptively switches between tracking
+          modes based on segmentation confidence and motion constraints.
+        </figcaption>
+      </figure>
+
+      <div class="columns is-centered method-description">
+        <div class="column is-five-sixths">
+          <div class="method-module-grid">
+            <div class="method-module-card">
+              <div class="module-icon"><i class="fas fa-project-diagram"></i></div>
+              <h3 class="module-title">KFCMM</h3>
+              <p class="module-subtitle">Kalman Filter-based Constrained Motion Module</p>
+              <p class="module-text">
+                Encodes satellite-domain physical constraints — approximate scale invariance and
+                near-linear target motion — into a Kalman-based motion model. KFCMM provides
+                predictive bounding-box prompts during occlusion and suppresses trajectory drift,
+                distinguishing it from generic Kalman filter approaches used in prior trackers.
+              </p>
+            </div>
+            <div class="method-module-card">
+              <div class="module-icon"><i class="fas fa-sitemap"></i></div>
+              <h3 class="module-title">MCSM</h3>
+              <p class="module-subtitle">Motion-Constrained State Machine</p>
+              <p class="module-text">
+                Regulates the tracker's internal state by jointly evaluating segmentation confidence
+                and Kalman motion reliability. MCSM dynamically selects between SAM2-driven
+                segmentation and motion-guided propagation, enabling graceful recovery from occlusion
+                and large displacement events without retraining.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ===================== END METHOD ===================== -->
+
+
+  <!-- ===================== MVOT DATASET ===================== -->
+  <section class="section hero is-light" id="dataset">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">MVOT Benchmark</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <p class="is-size-5 mvot-lead">
+            To support large-scale evaluation of satellite video trackers, we introduce
+            <strong>MatrixCity Video Object Tracking (MVOT)</strong> — a large-scale synthetic
+            benchmark built upon the MatrixCity Unreal Engine pipeline.
+          </p>
+        </div>
+      </div>
+
+      <div class="mvot-stats-grid">
+        <div class="mvot-stat-card">
+          <div class="stat-number">1,500<span class="stat-plus">+</span></div>
+          <div class="stat-label">Sequences</div>
+        </div>
+        <div class="mvot-stat-card">
+          <div class="stat-number">157K<span class="stat-plus">+</span></div>
+          <div class="stat-label">Annotated Frames</div>
+        </div>
+        <div class="mvot-stat-card">
+          <div class="stat-number">28.3<span class="stat-plus">%</span></div>
+          <div class="stat-label">Occlusion Rate (MVOT-Occ)</div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified mvot-text">
+            <p>
+              MVOT is generated with fixed aerial camera heights and diverse pitch angles, providing
+              controlled variation in viewpoint, illumination (simulated via Unreal Engine sunlight
+              parameters), and occlusion. The benchmark includes a dedicated <em>MVOT-Occlusion</em>
+              subset with 109 occlusion events per 1,000 sequences (versus 11 in OOTB and 21 in SatSOT),
+              making it the most occlusion-rich evaluation environment for satellite video trackers.
+              The data generation pipeline and annotations will be publicly released.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END MVOT DATASET ===================== -->
+
+
+  <!-- ===================== QUALITATIVE RESULTS ===================== -->
+  <section class="hero is-small" id="results">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+        <div id="image-carousel" class="carousel results-carousel">
+
+          <div class="item">
+            <img src="static/images/QualitativeFig_01.png"
+                 alt="Qualitative tracking comparison across satellite video sequences"
+                 loading="lazy"/>
+            <h2 class="subtitle has-text-centered">
+              <strong>Fig. 2.</strong> Qualitative tracking comparison on satellite video sequences.
+              SatSAM2 maintains accurate target localization under challenging conditions including
+              occlusion, small object size, and complex background clutter, where baseline methods
+              exhibit drift or track loss.
+            </h2>
+          </div>
+
+          <div class="item">
+            <img src="static/images/kalman_analyze_01.png"
+                 alt="Analysis of the KFCMM motion module"
+                 loading="lazy"/>
+            <h2 class="subtitle has-text-centered">
+              <strong>Fig. 3.</strong> Analysis of the KFCMM module. The Kalman-based motion estimator
+              accurately predicts target position during occlusion intervals, enabling SAM2 to resume
+              reliable segmentation upon target reappearance without manual re-initialization.
+            </h2>
+          </div>
+
+          <div class="item">
+            <img src="static/images/ablation_study.png"
+                 alt="Ablation study of SatSAM2 components"
+                 loading="lazy"/>
+            <h2 class="subtitle has-text-centered">
+              <strong>Fig. 4.</strong> Ablation study on the OOTB and SatSOT benchmarks.
+              Each proposed module (KFCMM and MCSM) contributes incrementally to overall tracking
+              performance; the full SatSAM2 configuration achieves the best results across all metrics.
+            </h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END QUALITATIVE RESULTS ===================== -->
+
+
+  <!-- ===================== TRACKING VIDEOS ===================== -->
+  <section class="hero is-small is-light" id="videos">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3 has-text-centered">Tracking Demonstrations</h2>
+        <p class="has-text-centered is-size-6 video-section-desc">
+          Zero-shot tracking results on satellite video sequences. No task-specific fine-tuning is required.
+        </p>
+        <div id="video-carousel" class="carousel results-carousel">
+
+          <div class="item item-video1">
+            <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
+              <source src="static/videos/car_5_good.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered video-caption">
+              Vehicle tracking — sequence car_05. SatSAM2 maintains a tight, stable mask
+              throughout the sequence despite small target size.
+            </h2>
+          </div>
+
+          <div class="item item-video2">
+            <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
+              <source src="static/videos/car_30_good.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered video-caption">
+              Vehicle tracking — sequence car_30. The MCSM state machine correctly recovers
+              from a brief occlusion event and resumes accurate tracking.
+            </h2>
+          </div>
+
+          <div class="item item-video3">
+            <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
+              <source src="static/videos/car_10_ok.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered video-caption">
+              Vehicle tracking — sequence car_10. The Kalman motion prior suppresses prompt
+              drift under challenging illumination and scale conditions.
+            </h2>
+          </div>
+
+          <div class="item item-video4">
+            <video poster="" id="video4" controls muted loop height="100%" preload="metadata">
+              <source src="static/videos/train_5_ok.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered video-caption">
+              Train tracking — sequence train_05. SatSAM2 generalizes beyond vehicles to
+              elongated targets such as trains without any domain-specific retraining.
+            </h2>
+          </div>
+
+          <div class="item item-video5">
+            <video poster="" id="video5" controls muted loop height="100%" preload="metadata">
+              <source src="static/videos/train_8_ok.mp4" type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered video-caption">
+              Train tracking — sequence train_08. Robust segmentation mask maintained
+              through viewpoint variation and partial occlusion by scene geometry.
+            </h2>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END TRACKING VIDEOS ===================== -->
+
+
+  <!-- ===================== QUANTITATIVE RESULTS ===================== -->
+  <section class="section" id="quantitative">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+
+          <p class="has-text-centered results-lead is-size-6">
+            SatSAM2 is evaluated on two public satellite video tracking benchmarks (OOTB / SatSOT)
+            and the proposed MVOT benchmark. All baselines are reproduced with official code
+            on the same hardware (NVIDIA GeForce RTX 3090).
+          </p>
+
+          <!-- SatSOT Table -->
+          <h3 class="results-table-title">OOTB / SatSOT Benchmark</h3>
+          <div class="table-container results-table-wrapper">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Type</th>
+                  <th>AUC (%)</th>
+                  <th>P (%)</th>
+                  <th>P<sub>norm</sub> (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>DiMP-50</td>
+                  <td><span class="tag-type tag-supervised">Supervised</span></td>
+                  <td>46.86</td><td>57.20</td><td>46.01</td>
+                </tr>
+                <tr>
+                  <td>KYS</td>
+                  <td><span class="tag-type tag-supervised">Supervised</span></td>
+                  <td>48.27</td><td>59.00</td><td>47.53</td>
+                </tr>
+                <tr>
+                  <td>SAM2</td>
+                  <td><span class="tag-type tag-foundation">Foundation</span></td>
+                  <td>48.06</td><td>76.14</td><td>74.60</td>
+                </tr>
+                <tr>
+                  <td>SAMURAI</td>
+                  <td><span class="tag-type tag-foundation">Foundation</span></td>
+                  <td>41.95</td><td>67.99</td><td>65.85</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><strong>SatSAM2 (Ours)</strong></td>
+                  <td><span class="tag-type tag-foundation">Foundation</span></td>
+                  <td><strong>54.15</strong></td>
+                  <td><strong>78.63</strong></td>
+                  <td><strong>76.37</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SAT-MTB Table -->
+          <h3 class="results-table-title" style="margin-top:2rem;">SAT-MTB Benchmark</h3>
+          <div class="table-container results-table-wrapper">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Type</th>
+                  <th>AUC (%)</th>
+                  <th>P (%)</th>
+                  <th>P<sub>norm</sub> (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>RTS</td>
+                  <td><span class="tag-type tag-supervised">Supervised</span></td>
+                  <td>50.74</td><td>58.22</td><td>50.23</td>
+                </tr>
+                <tr>
+                  <td>SAM2</td>
+                  <td><span class="tag-type tag-foundation">Foundation</span></td>
+                  <td>51.11</td><td>59.57</td><td>50.79</td>
+                </tr>
+                <tr>
+                  <td>SAMURAI</td>
+                  <td><span class="tag-type tag-foundation">Foundation</span></td>
+                  <td>51.29</td><td>59.51</td><td>51.01</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><strong>SatSAM2 (Ours)</strong></td>
+                  <td><span class="tag-type tag-foundation">Foundation</span></td>
+                  <td><strong>54.72</strong></td>
+                  <td><strong>66.16</strong></td>
+                  <td><strong>54.48</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Efficiency Table -->
+          <h3 class="results-table-title" style="margin-top:2rem;">Computational Efficiency (RTX 3090)</h3>
+          <div class="table-container results-table-wrapper" style="max-width:480px;margin:0 auto;">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>FPS</th>
+                  <th>GPU Mem (GB)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SAM2</td><td>14.84</td><td>1.524</td>
+                </tr>
+                <tr>
+                  <td>SAMURAI</td><td>14.53</td><td>1.536</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><strong>SatSAM2 (Ours)</strong></td>
+                  <td><strong>14.45</strong></td>
+                  <td><strong>1.551</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="has-text-centered is-size-7 efficiency-note">
+            SatSAM2 introduces only marginal computational overhead (+0.015 GB GPU memory) over SAM2.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== END QUANTITATIVE RESULTS ===================== -->
+
+
+  <!-- ===================== BIBTEX ===================== -->
+  <section class="section hero is-light" id="BibTeX">
     <div class="container is-max-desktop content">
       <div class="bibtex-header">
         <h2 class="title">BibTeX</h2>
@@ -452,41 +610,45 @@
           <span class="copy-text">Copy</span>
         </button>
       </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
+      <pre id="bibtex-code"><code>@inproceedings{Fan2026SatSAM2,
+  title     = {SatSAM2: Motion-Constrained Video Object Tracking in Satellite
+               Imagery using Promptable {SAM2} and Kalman Priors},
+  author    = {Fan, Ruijie and Ye, Junyan and Chen, Huan and
+               Huang, Zilong and Wang, Xiaolei and Li, Weijia},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer
+               Vision and Pattern Recognition (CVPR)},
+  year      = {2026}
 }</code></pre>
     </div>
-</section>
-<!--End BibTex citation -->
+  </section>
+  <!-- ===================== END BIBTEX ===================== -->
+
+  </main><!-- end main-content -->
 
 
+  <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">
+                Academic Project Page Template
+              </a>
+              adopted from the
+              <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              Licensed under
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+                CC BY-SA 4.0</a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+  <!-- ===================== END FOOTER ===================== -->
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>
