@@ -349,119 +349,107 @@
   <!-- ===================== END MVOT DATASET ===================== -->
 
 
-  <!-- ===================== QUALITATIVE RESULTS ===================== -->
-  <section class="hero is-small" id="results">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
-        <div id="image-carousel" class="carousel results-carousel">
+  <!-- ===================== RESULTS (side-by-side) ===================== -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <div class="columns is-variable is-5">
 
-          <div class="item">
-            <img src="static/images/QualitativeFig_01.png"
-                 alt="Qualitative tracking comparison across satellite video sequences"
-                 loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              <strong>Fig. 2.</strong> Qualitative tracking comparison on satellite video sequences.
-              SatSAM2 maintains accurate target localization under challenging conditions including
-              occlusion, small object size, and complex background clutter, where baseline methods
-              exhibit drift or track loss.
-            </h2>
+        <!-- Left: Qualitative Images -->
+        <div class="column">
+          <h3 class="side-col-title">Qualitative Comparison</h3>
+          <div id="image-carousel" class="carousel results-carousel">
+
+            <div class="item">
+              <img src="static/images/QualitativeFig_01.png"
+                   alt="Qualitative tracking comparison" loading="lazy"/>
+              <p class="carousel-caption">
+                <strong>Fig. 2.</strong> Tracking comparison on satellite sequences.
+                SatSAM2 maintains accurate localization under occlusion and clutter
+                where baselines drift or lose track.
+              </p>
+            </div>
+
+            <div class="item">
+              <img src="static/images/kalman_analyze_01.png"
+                   alt="KFCMM module analysis" loading="lazy"/>
+              <p class="carousel-caption">
+                <strong>Fig. 3.</strong> KFCMM analysis. The Kalman estimator
+                predicts target position during occlusion, enabling SAM2 to
+                resume without manual re-initialization.
+              </p>
+            </div>
+
+            <div class="item">
+              <img src="static/images/ablation_study.png"
+                   alt="Ablation study" loading="lazy"/>
+              <p class="carousel-caption">
+                <strong>Fig. 4.</strong> Ablation study. KFCMM and MCSM each
+                contribute incrementally; the full SatSAM2 achieves best results
+                on all benchmarks.
+              </p>
+            </div>
+
           </div>
-
-          <div class="item">
-            <img src="static/images/kalman_analyze_01.png"
-                 alt="Analysis of the KFCMM motion module"
-                 loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              <strong>Fig. 3.</strong> Analysis of the KFCMM module. The Kalman-based motion estimator
-              accurately predicts target position during occlusion intervals, enabling SAM2 to resume
-              reliable segmentation upon target reappearance without manual re-initialization.
-            </h2>
-          </div>
-
-          <div class="item">
-            <img src="static/images/ablation_study.png"
-                 alt="Ablation study of SatSAM2 components"
-                 loading="lazy"/>
-            <h2 class="subtitle has-text-centered">
-              <strong>Fig. 4.</strong> Ablation study on the OOTB and SatSOT benchmarks.
-              Each proposed module (KFCMM and MCSM) contributes incrementally to overall tracking
-              performance; the full SatSAM2 configuration achieves the best results across all metrics.
-            </h2>
-          </div>
-
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- ===================== END QUALITATIVE RESULTS ===================== -->
 
+        <!-- Right: Tracking Videos -->
+        <div class="column">
+          <h3 class="side-col-title">Tracking Demonstrations</h3>
+          <div id="video-carousel" class="carousel results-carousel">
 
-  <!-- ===================== TRACKING VIDEOS ===================== -->
-  <section class="hero is-small is-light" id="videos">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3 has-text-centered">Tracking Demonstrations</h2>
-        <p class="has-text-centered is-size-6 video-section-desc">
-          Zero-shot tracking results on satellite video sequences. No task-specific fine-tuning is required.
-        </p>
-        <div id="video-carousel" class="carousel results-carousel">
+            <div class="item">
+              <video id="video1" controls muted loop preload="metadata">
+                <source src="static/videos/car_5_good.mp4" type="video/mp4">
+              </video>
+              <p class="carousel-caption">
+                Sequence car_05 — stable mask on small vehicle target.
+              </p>
+            </div>
 
-          <div class="item item-video1">
-            <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-              <source src="static/videos/car_5_good.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered video-caption">
-              Vehicle tracking — sequence car_05. SatSAM2 maintains a tight, stable mask
-              throughout the sequence despite small target size.
-            </h2>
+            <div class="item">
+              <video id="video2" controls muted loop preload="metadata">
+                <source src="static/videos/car_30_good.mp4" type="video/mp4">
+              </video>
+              <p class="carousel-caption">
+                Sequence car_30 — MCSM recovers correctly after brief occlusion.
+              </p>
+            </div>
+
+            <div class="item">
+              <video id="video3" controls muted loop preload="metadata">
+                <source src="static/videos/car_10_ok.mp4" type="video/mp4">
+              </video>
+              <p class="carousel-caption">
+                Sequence car_10 — Kalman prior suppresses drift under illumination change.
+              </p>
+            </div>
+
+            <div class="item">
+              <video id="video4" controls muted loop preload="metadata">
+                <source src="static/videos/train_5_ok.mp4" type="video/mp4">
+              </video>
+              <p class="carousel-caption">
+                Sequence train_05 — generalizes to elongated targets without retraining.
+              </p>
+            </div>
+
+            <div class="item">
+              <video id="video5" controls muted loop preload="metadata">
+                <source src="static/videos/train_8_ok.mp4" type="video/mp4">
+              </video>
+              <p class="carousel-caption">
+                Sequence train_08 — robust through partial occlusion by scene geometry.
+              </p>
+            </div>
+
           </div>
-
-          <div class="item item-video2">
-            <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-              <source src="static/videos/car_30_good.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered video-caption">
-              Vehicle tracking — sequence car_30. The MCSM state machine correctly recovers
-              from a brief occlusion event and resumes accurate tracking.
-            </h2>
-          </div>
-
-          <div class="item item-video3">
-            <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-              <source src="static/videos/car_10_ok.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered video-caption">
-              Vehicle tracking — sequence car_10. The Kalman motion prior suppresses prompt
-              drift under challenging illumination and scale conditions.
-            </h2>
-          </div>
-
-          <div class="item item-video4">
-            <video poster="" id="video4" controls muted loop height="100%" preload="metadata">
-              <source src="static/videos/train_5_ok.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered video-caption">
-              Train tracking — sequence train_05. SatSAM2 generalizes beyond vehicles to
-              elongated targets such as trains without any domain-specific retraining.
-            </h2>
-          </div>
-
-          <div class="item item-video5">
-            <video poster="" id="video5" controls muted loop height="100%" preload="metadata">
-              <source src="static/videos/train_8_ok.mp4" type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered video-caption">
-              Train tracking — sequence train_08. Robust segmentation mask maintained
-              through viewpoint variation and partial occlusion by scene geometry.
-            </h2>
-          </div>
-
         </div>
-      </div>
-    </div>
+
+      </div><!-- .columns -->
+    </div><!-- .container -->
   </section>
-  <!-- ===================== END TRACKING VIDEOS ===================== -->
+  <!-- ===================== END RESULTS ===================== -->
 
 
   <!-- ===================== QUANTITATIVE RESULTS ===================== -->
