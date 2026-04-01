@@ -57,7 +57,7 @@ window.addEventListener('scroll', function () {
 });
 
 // ── Carousel Init ───────────────────────────────────────────────
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     var options = {
         slidesToScroll: 1,
         slidesToShow: 1,
