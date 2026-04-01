@@ -203,14 +203,21 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <video id="teaser-video" autoplay controls muted loop height="100%" preload="metadata">
-          <source src="static/videos/car_30_good.mp4" type="video/mp4">
-        </video>
-        <h2 class="subtitle has-text-centered">
+        <div class="teaser-video-frame">
+          <div class="teaser-label">
+            <span class="teaser-label-dot"></span>Demo
+          </div>
+          <div class="teaser-video-wrap">
+            <video id="teaser-video" autoplay controls muted loop preload="metadata">
+              <source src="static/videos/car_30_good.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <p class="teaser-caption">
           SatSAM2 enables robust, zero-shot tracking of small targets in satellite video by combining the
           segmentation power of SAM2 with satellite-domain-specific Kalman motion constraints,
           maintaining accurate tracks through occlusion, scale variation, and scene complexity.
-        </h2>
+        </p>
       </div>
     </div>
   </section>
