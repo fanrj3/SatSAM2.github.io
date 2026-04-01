@@ -343,10 +343,20 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
+/* Make both Results columns the same height */
+#results .column {
+  display: flex;
+  flex-direction: column;
+}
+
 .results-carousel {
   overflow: visible;
   padding: 0.5rem 0 0;
   position: relative;
+  /* Grow to fill column so both carousels are equal height */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .results-carousel .item {
@@ -360,7 +370,13 @@ body {
   border: 1px solid var(--border-color);
   flex-direction: column;
   justify-content: center;
+  flex: 1;           /* fill carousel height */
+  min-height: 0;     /* allow flex shrinking */
   /* shown/hidden by JS inline style */
+}
+
+.carousel-dots {
+  flex-shrink: 0;    /* always at the bottom, never squeezed */
 }
 
 .results-carousel .item img,
@@ -372,15 +388,19 @@ body {
   height: auto;
 }
 
-/* Fixed media heights to prevent dots/buttons from jumping between slides */
+/* Stable media sizes within the flex items */
 #image-carousel .item img {
-  height: 340px;
+  flex: 1;
+  min-height: 0;
   object-fit: contain;
   background: var(--background-secondary);
+  height: 100%;          /* fill the flex item */
+  max-height: 380px;     /* cap so it doesn't stretch excessively */
 }
 
 #video-carousel .item video {
   aspect-ratio: 16 / 9;
+  width: 100%;
   height: auto;
 }
 
